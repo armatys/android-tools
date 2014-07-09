@@ -2,6 +2,7 @@
 *.o
 *.a
 *.so
+android-tools
 
 # Folders
 _obj
