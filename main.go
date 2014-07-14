@@ -33,16 +33,16 @@ var (
 	actionNameValidate      = "validate"
 	actionNameCrowdinUpdate = "crowdin-update"
 	actionNameCrowdinExport = "crowdin-export"
-	supportedActionNames    = []string{actionNameValidate, actionNameCrowdinUpdate}
+	supportedActionNames    = []string{actionNameValidate, actionNameCrowdinUpdate, actionNameCrowdinExport}
 )
 
 func init() {
 	flag.StringVar(&actionNameArg, "action", actionNameValidate, fmt.Sprintf("Action to perform, one of %v.", supportedActionNames))
-	flag.StringVar(&projectResDirArg, "resdir", "", "(required) The path to the 'res' directory of your Android project.")
+	flag.StringVar(&projectResDirArg, "resdir", "", "The path to the 'res' directory of your Android project (required for 'validate' and 'crowdin-update').")
 	flag.StringVar(&baseLocaleArg, "baselocale", "", "The base locale used for validation of other locale strings (e.g. 'en' or 'en-rGB').")
-	flag.StringVar(&stringsFileNameArg, "filename", "strings.xml", "(required) The name of the xml file with XML string resources.")
-	flag.BoolVar(&showMissingArg, "missing", false, "If true shows the missing translations.")
-	flag.StringVar(&crowdinConfigFileArg, "crowdin-conf", "", "The path to a file with a JSON configuration for accessing Crowdin service. The JSON should look like {\"Key\": \"api_key\", \"ProjectName\": \"the-project-name\"}")
+	flag.StringVar(&stringsFileNameArg, "filename", "strings.xml", "The name of the xml file with XML string resources (required for 'validate' and 'crowdin-update').")
+	flag.BoolVar(&showMissingArg, "missing", false, "If true shows the missing translations (use with 'validate').")
+	flag.StringVar(&crowdinConfigFileArg, "crowdin-conf", "", "The path to a file with a JSON configuration for accessing Crowdin service (required for 'crowdin-*'). The JSON should look like {\"Key\": \"api_key\", \"ProjectName\": \"the-project-name\"}")
 }
 
 func main() {
